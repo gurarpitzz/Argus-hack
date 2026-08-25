@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 align="center">🛡️ ARGUS (DFAP)</h1>
+  <h1 align="center">ARGUS (DFAP)</h1>
   <p align="center">
     <b>Physics-Grounded Intelligence Platform for SIM-Box, Mule Network Detection & Cross-Domain Cyber Fraud Analytics</b>
   </p>
@@ -10,7 +10,7 @@
 
 ---
 
-## 📌 Executive Overview
+## Executive Overview
 
 **ARGUS (Digital Forensics & Analytics Platform - DFAP)** is an advanced, physics-grounded cyber intelligence platform engineered for law enforcement agencies and telecom security analysts. By unifying **Telecom Telemetry (CDR/IPDR)**, **Financial Genomics (Bank/UPI Statements)**, and **Cross-Domain Threat Intelligence**, ARGUS resolves coordinated fraud syndicates, illegal SIM-box operations, and money-mule networks into court-ready actionable evidence.
 
@@ -18,7 +18,7 @@ Traditional detection engines look at isolated behavioral signals which cyber-sy
 
 ---
 
-## 🌟 Key Architecture & Highlights
+## Key Architecture & Highlights
 
 ### 1. Carrier-Grade 12-Layer Fusion Pipeline
 * **Raw Ingestion Engine**: Unifies heterogeneous data streams (CDR/IPDR logs, bank CSV/XLS, device telemetry, APK metadata).
@@ -27,15 +27,15 @@ Traditional detection engines look at isolated behavioral signals which cyber-sy
 * **Bayesian Consensus Engine**: Computes mathematical consistency across physical and financial domains to eliminate false positives.
 
 ### 2. Core Operational Modules
-* 🛰️ **Honeypot Tactical Radar HUD**: Real-time national map visualization of telemetry feeds, cell tower signal strength, and live threat vectors across Indian states.
-* 🧬 **Deception Genome & Tower Heatmap**: Interactive geographic density mapping for illegal SIM-box arrays and localized signal triangulation.
-* 🕸️ **Breach Nexus & Entity Resolution**: Interactive graph matching linking IMEIs, IMSIs, bank accounts, UPI IDs, and physical addresses into unified suspect clusters.
-* 📱 **Twin Syndicate (APK Lab)**: Malicious Android package decompiler and behavior scanner powered by Google Gemini AI for malware analysis (SMS hijackers, banking overlay apps).
-* 🔮 **Autonomous Deception Oracle**: Predictive threat engine calculating risk entropy, attack trajectory branching, and proactive defense countermeasures.
+* **Honeypot Tactical Radar HUD**: Real-time national map visualization of telemetry feeds, cell tower signal strength, and live threat vectors across Indian states.
+* **Deception Genome & Tower Heatmap**: Interactive geographic density mapping for illegal SIM-box arrays and localized signal triangulation.
+* **Breach Nexus & Entity Resolution**: Interactive graph matching linking IMEIs, IMSIs, bank accounts, UPI IDs, and physical addresses into unified suspect clusters.
+* **Twin Syndicate (APK Lab)**: Malicious Android package decompiler and behavior scanner powered by Google Gemini AI for malware analysis (SMS hijackers, banking overlay apps).
+* **Autonomous Deception Oracle**: Predictive threat engine calculating risk entropy, attack trajectory branching, and proactive defense countermeasures.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 * **Frontend**: React 19, TypeScript, Vite, Tailwind CSS v4, Motion (Framer Motion)
 * **Visualization & Graphics**: Three.js, D3.js, Canvas HUD, Lucide React Icons
@@ -44,7 +44,7 @@ Traditional detection engines look at isolated behavioral signals which cyber-sy
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 * **Node.js**: v18.x or higher
@@ -54,8 +54,8 @@ Traditional detection engines look at isolated behavioral signals which cyber-sy
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/gurarpitzz/Argus-Hack-CPhere.git
-   cd Argus-Hack-CPhere
+   git clone https://github.com/gurarpitzz/Argus-Hack-CP.git
+   cd Argus-Hack-CP
    ```
 
 2. **Install Dependencies**
@@ -83,7 +83,7 @@ Traditional detection engines look at isolated behavioral signals which cyber-sy
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 remix-argus/
@@ -103,12 +103,12 @@ remix-argus/
 
 ---
 
-## 🏆 Presentation & Track 6 Alignment
+## Presentation & Track 6 Alignment
 * **Track 6**: Chandigarh Police Hackathon 2026 — DFAP (Single Analytics Platform for CDR/IPDR, Bank Statements & Digital Footprints)
 * **Team**: ARGUS
 * **Lead Developer**: Gurarpit Singh (Vivekananda Institute of Professional Studies, GGSIPU Delhi)
 
 ---
 
-## 📄 License
+## License
 This project is developed for the Chandigarh Police Hackathon 2026. All rights reserved.
