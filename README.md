@@ -167,13 +167,3 @@ remix-argus/
 ```
 
 ---
-
-## Presentation & Track 6 Alignment
-* **Track 6**: Chandigarh Police Hackathon 2026 — DFAP (Single Analytics Platform for CDR/IPDR, Bank Statements & Digital Footprints)
-* **Team**: ARGUS
-* **Lead Developer**: Gurarpit Singh (Vivekananda Institute of Professional Studies, GGSIPU Delhi)
-
----
-
-## License
-This project is developed for the Chandigarh Police Hackathon 2026. All rights reserved.
