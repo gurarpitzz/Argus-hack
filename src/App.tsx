@@ -22,10 +22,13 @@ import { ApkLab } from './components/ApkLab';
 import { LithosHero } from './components/LithosHero';
 import { ArgusShieldEyeLogo } from './components/ArgusLogo';
 import { Globe } from 'lucide-react';
+import { EvidenceExportModal } from './components/EvidenceExportModal';
+import { UnifiedChronologicalTimeline } from './components/UnifiedChronologicalTimeline';
 import { 
   Shield, Laptop, Cpu, Radio, TrendingUp, Layers, 
   Zap, AlertCircle, Play, Square, UploadCloud, 
-  RefreshCw, CheckCircle2, Sparkles, BookOpen, Binary
+  RefreshCw, CheckCircle2, Sparkles, BookOpen, Binary,
+  Clock, Download, UserCheck, ShieldAlert
 } from 'lucide-react';
 import { cn } from './lib/utils';
 
@@ -87,7 +90,9 @@ const GlitchOverlay = ({ active }: { active: boolean }) => {
 export default function App() {
   const [workflowStep, setWorkflowStep] = useState<'LITHOS' | 'DASHBOARD'>('DASHBOARD');
   const [isLoaded, setIsLoaded] = useState(false);
-  const [activeView, setActiveView] = useState<'INTELLIGENCE' | 'GENOME' | 'NETWORK' | 'FORECAST' | 'APK_LAB'>('INTELLIGENCE');
+  const [activeView, setActiveView] = useState<'INTELLIGENCE' | 'GENOME' | 'NETWORK' | 'TIMELINE' | 'FORECAST' | 'APK_LAB'>('INTELLIGENCE');
+  const [userRole, setUserRole] = useState<'CYBER_CELL' | 'FIELD_INVESTIGATOR'>('CYBER_CELL');
+  const [showEvidenceModal, setShowEvidenceModal] = useState(false);
 
   // Load all telemetry stream mechanisms from upgraded ARGUS engine
   const {
@@ -252,6 +257,7 @@ export default function App() {
                   { id: 'INTELLIGENCE', label: 'Honeypot Intelligence', icon: <Laptop size={13} /> },
                   { id: 'GENOME', label: 'Deception Genome', icon: <Cpu size={13} /> },
                   { id: 'NETWORK', label: 'Breach Nexus', icon: <Radio size={13} /> },
+                  { id: 'TIMELINE', label: 'Cross Timeline', icon: <Clock size={13} /> },
                   { id: 'APK_LAB', label: 'Twin Syndicate', icon: <Binary size={13} /> },
                   { id: 'FORECAST', label: 'Deception Oracle', icon: <TrendingUp size={13} /> },
                 ].map(view => (
@@ -259,7 +265,7 @@ export default function App() {
                     key={view.id}
                     onClick={() => setActiveView(view.id as any)}
                     className={cn(
-                      "px-5 py-2 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer",
+                      "px-4 py-2 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer",
                       activeView === view.id 
                         ? "bg-orange-500 text-white shadow-[0_4px_14px_rgba(249,115,22,0.35)]" 
                         : "text-slate-600 hover:text-slate-900 hover:bg-white/80"
@@ -271,54 +277,58 @@ export default function App() {
                 ))}
               </nav>
 
-              {/* Server-Side Indicators */}
-              <div className="flex items-center gap-6">
+              {/* Server-Side & RBAC Indicators */}
+              <div className="flex items-center gap-3">
                 
-                {/* Active Indicator status alerts */}
-                <div className="text-right hidden xl:block">
-                  <div className="text-[8px] uppercase tracking-widest text-slate-400 mb-1 font-bold">Threat Density Rate</div>
-                  <div className="flex gap-1 h-3.5 items-end">
-                    {[...Array(8)].map((_, i) => (
-                      <div 
-                        key={i} 
-                        className={cn(
-                          "w-1 rounded-full transition-all duration-300", 
-                          i < Math.round(threatLevel / 12) ? "bg-orange-500" : "bg-slate-200"
-                        )} 
-                        style={{ height: `${30 + Math.sin(i + Date.now() / 1000) * 50 + 20}%` }} 
-                      />
-                    ))}
-                  </div>
+                {/* RBAC Role Toggler */}
+                <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-[10px] font-mono font-bold">
+                  <button
+                    onClick={() => setUserRole('CYBER_CELL')}
+                    className={cn(
+                      "px-2.5 py-1 rounded-lg transition-all cursor-pointer flex items-center gap-1",
+                      userRole === 'CYBER_CELL' 
+                        ? "bg-slate-900 text-white shadow-sm" 
+                        : "text-slate-500 hover:text-slate-900"
+                    )}
+                  >
+                    <UserCheck size={11} className="text-orange-400" />
+                    <span>CYBER CELL</span>
+                  </button>
+                  <button
+                    onClick={() => setUserRole('FIELD_INVESTIGATOR')}
+                    className={cn(
+                      "px-2.5 py-1 rounded-lg transition-all cursor-pointer flex items-center gap-1",
+                      userRole === 'FIELD_INVESTIGATOR' 
+                        ? "bg-slate-900 text-white shadow-sm" 
+                        : "text-slate-500 hover:text-slate-900"
+                    )}
+                  >
+                    <ShieldAlert size={11} className="text-emerald-400" />
+                    <span>FIELD AGENT</span>
+                  </button>
                 </div>
 
-                <div className="text-right">
-                  <div className="text-[8px] uppercase tracking-[0.2em] text-slate-400 mb-0.5 font-bold">Mitigation Center</div>
-                  <div className="flex items-center gap-1.5 justify-end">
-                    <span className={cn(
-                      "w-2 h-2 rounded-full animate-pulse",
-                      autonomousThinking ? "bg-red-500" : "bg-emerald-500"
-                    )} />
-                    <span className={cn(
-                      "text-[9px] font-mono uppercase font-black tracking-widest",
-                      autonomousThinking ? "text-red-600" : "text-emerald-600"
-                    )}>
-                      {autonomousThinking ? 'AUTONOMOUS ACTIVE' : 'STEADY_MITIG'}
-                    </span>
-                  </div>
-                </div>
+                {/* Court Evidence Dossier Export Button */}
+                <button
+                  onClick={() => setShowEvidenceModal(true)}
+                  className="px-3 py-2 text-[10px] font-black uppercase tracking-wider bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
+                >
+                  <Download size={12} />
+                  <span>EXPORT EVIDENCE</span>
+                </button>
 
                 {/* Flagship Autonomous mode Button toggler */}
                 <button
                   onClick={triggerAutonomousMode}
                   className={cn(
-                    "px-4 py-2 text-[9px] font-black uppercase tracking-widest border rounded-xl flex items-center gap-2 transition-all duration-300 transform cursor-pointer shadow-sm",
+                    "px-3.5 py-2 text-[9px] font-black uppercase tracking-widest border rounded-xl flex items-center gap-2 transition-all duration-300 transform cursor-pointer shadow-sm",
                     isPlayingScenarios 
                       ? "bg-red-500 border-red-500 text-white shadow-[0_4px_16px_rgba(239,68,68,0.3)]" 
                       : "bg-white hover:bg-orange-50/50 border-slate-200 hover:border-orange-300 text-slate-800"
                   )}
                 >
                   {isPlayingScenarios ? <Square size={10} fill="currentColor" /> : <Play size={10} fill="currentColor" className="text-orange-500" />}
-                  {isPlayingScenarios ? 'SHUTDOWN AGENT' : 'AUTONOMOUS ACTIVE'}
+                  {isPlayingScenarios ? 'SHUTDOWN' : 'AUTONOMOUS'}
                 </button>
               </div>
             </header>
@@ -396,6 +406,18 @@ export default function App() {
                         className="w-full h-full relative"
                       >
                         <EntityResolutionCore />
+                      </motion.div>
+                    )}
+
+                    {activeView === 'TIMELINE' && (
+                      <motion.div
+                        key="timeline"
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.02 }}
+                        className="w-full h-full relative overflow-y-auto"
+                      >
+                        <UnifiedChronologicalTimeline />
                       </motion.div>
                     )}
 
@@ -505,6 +527,11 @@ export default function App() {
             </footer>
           </motion.div>
         )}
+        {/* Court-Ready Evidence Dossier Modal */}
+        <EvidenceExportModal 
+          isOpen={showEvidenceModal} 
+          onClose={() => setShowEvidenceModal(false)} 
+        />
       </AnimatePresence>
     </div>
   );
