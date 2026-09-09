@@ -4,7 +4,7 @@ import * as crypto from 'crypto';
 const NUM_RECORDS = 1200;
 const START_TIME = new Date(Date.now() - 24 * 60 * 60 * 1000);
 
-const LAYERS = ['SSH', 'HTTP', 'SQL'] as const;
+
 const ACTION_TYPES = {
   SSH: ['ROOT_LOGIN_ATTEMPT', 'BRUTE_FORCE', 'BANNER_GRAB', 'SHELLCODE_INJECTION', 'PRIV_ESC'],
   HTTP: ['ADMIN_RECON', 'SQL_INJECTION', 'ENV_SCAN', 'DIR_TRAVERSAL', 'XSS_PAYLOAD'],

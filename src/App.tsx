@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useAetherEngine } from './lib/aetherEngine';
 import { Background } from './components/Background';
 import { LoadingScreen } from './components/LoadingScreen';
-import { FinomeGenomeActivity } from './components/FinomeGenomeActivity';
 import { DatasetExplorer } from './components/DatasetExplorer';
 import { FraudConstellation } from './components/FraudConstellation';
 import { DigitalGenome } from './components/DigitalGenome';
@@ -21,7 +20,6 @@ import { generateApkAnalysis } from './lib/gemini';
 import { ApkLab } from './components/ApkLab';
 import { LithosHero } from './components/LithosHero';
 import { ArgusShieldEyeLogo } from './components/ArgusLogo';
-import { Globe } from 'lucide-react';
 import { EvidenceExportModal } from './components/EvidenceExportModal';
 import { UnifiedChronologicalTimeline } from './components/UnifiedChronologicalTimeline';
 import { 
