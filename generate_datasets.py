@@ -20,27 +20,7 @@ DECEPTION_STRATEGIES = [
     'HONEYTOKEN_GENERATION', 'RECURSIVE_TARPIT', 'DB_CORRUPTION_SIM', 'TRAFFIC_MIRRORING'
 ]
 
-def generate_attacker_logs():
-    logs = []
-    for i in range(NUM_RECORDS):
-        timestamp = (START_TIME + timedelta(seconds=i*86)).isoformat()
-        layer = random.choice(LAYERS)
-        action = random.choice(ACTION_TYPES[layer])
-        maliciousness = random.randint(60, 100)
-        entropy = round(random.uniform(1.5, 4.5), 2)
-        
-        logs.append({
-            'log_id': str(uuid.uuid4())[:8],
-            'timestamp': timestamp,
-            'session_id': f"0x{random.randint(0x1000, 0xFFFF):X}",
-            'source_ip': f"192.168.1.{random.randint(2, 254)}",
-            'layer': layer,
-            'action_type': action,
-            'maliciousness_score': maliciousness,
-            'entropy_value': entropy,
-            'threat_vector_contribution': round(maliciousness / 10, 2)
-        })
-    return logs
+
 
 def generate_deception_logs(attacker_logs):
     logs = []
@@ -79,11 +59,7 @@ def generate_telemetry():
     return logs
 
 # Write to CSV
-attacker_data = generate_attacker_logs()
-with open('attacker_logs.csv', 'w', newline='') as f:
-    writer = csv.DictWriter(f, fieldnames=attacker_data[0].keys())
-    writer.writeheader()
-    writer.writerows(attacker_data)
+
 
 deception_data = generate_deception_logs(attacker_data)
 with open('deception_responses.csv', 'w', newline='') as f:
